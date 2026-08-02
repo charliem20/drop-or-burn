@@ -1,1 +1,441 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Drop or Burn</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background:
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px),
+        #080909;
+
+      background-size: 100% 80px, 110px 100%;
+      color: #eeeae2;
+      font-family: Georgia, "Times New Roman", serif;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(8, 9, 9, 0.92);
+      border-bottom: 1px solid rgba(255,255,255,0.15);
+      backdrop-filter: blur(12px);
+    }
+
+    nav {
+      max-width: 1150px;
+      min-height: 70px;
+      margin: auto;
+      padding: 0 25px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 25px;
+    }
+
+    .logo {
+      font-size: 18px;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+
+    .logo span {
+      color: #ff5a00;
+    }
+
+    .links {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      color: #aaa8a3;
+      font-size: 14px;
+    }
+
+    .links a:hover {
+      color: white;
+    }
+
+    .contract {
+      max-width: 330px;
+      padding: 9px 12px;
+      border: 1px solid rgba(255,255,255,0.2);
+      font-family: monospace;
+      font-size: 11px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .contract-address {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .copy {
+      border: none;
+      background: transparent;
+      color: white;
+      cursor: pointer;
+    }
+
+    .hero {
+      min-height: 440px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .hero-content {
+      position: relative;
+      padding: 60px 80px;
+    }
+
+    .hero h1 {
+      font-size: clamp(48px, 8vw, 90px);
+      line-height: 1;
+      letter-spacing: -4px;
+    }
+
+    .hero h1 span {
+      color: #ff5a00;
+      text-shadow: 0 0 30px rgba(255,90,0,0.35);
+    }
+
+    .hero p {
+      margin-top: 25px;
+      color: #b9b6af;
+      font-size: 16px;
+    }
+
+    .corner {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      opacity: 0.65;
+    }
+
+    .top-left {
+      top: 0;
+      left: 0;
+      border-top: 1px solid white;
+      border-left: 1px solid white;
+    }
+
+    .top-right {
+      top: 0;
+      right: 0;
+      border-top: 1px solid white;
+      border-right: 1px solid white;
+    }
+
+    .bottom-left {
+      bottom: 0;
+      left: 0;
+      border-bottom: 1px solid white;
+      border-left: 1px solid white;
+    }
+
+    .bottom-right {
+      bottom: 0;
+      right: 0;
+      border-bottom: 1px solid white;
+      border-right: 1px solid white;
+    }
+
+    section {
+      max-width: 760px;
+      margin: auto;
+      padding: 85px 25px;
+      text-align: center;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    section h2 {
+      font-size: 28px;
+      margin-bottom: 22px;
+    }
+
+    section p {
+      color: #c7c3bb;
+      font-size: 17px;
+      line-height: 1.8;
+    }
+
+    .label {
+      margin-bottom: 14px;
+      color: #ff5a00;
+      font-family: Arial, sans-serif;
+      font-size: 11px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+    }
+
+    .important {
+      margin-top: 28px;
+      color: white;
+      font-weight: bold;
+    }
+
+    .buttons {
+      margin-top: 30px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .button {
+      min-width: 135px;
+      padding: 13px 20px;
+      background: #ece8de;
+      color: #151515;
+      border: 1px solid #ece8de;
+      font-family: Arial, sans-serif;
+      font-size: 11px;
+      font-weight: bold;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: 0.2s;
+    }
+
+    .button:hover {
+      transform: translateY(-3px);
+      background: white;
+    }
+
+    .burn-button {
+      background: #ff5a00;
+      border-color: #ff5a00;
+      color: white;
+    }
+
+    .stats {
+      margin-top: 35px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .stat {
+      padding: 25px 15px;
+      border: 1px solid rgba(255,255,255,0.16);
+      background: rgba(255,255,255,0.02);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 24px;
+      color: #ff5a00;
+    }
+
+    .stat span {
+      color: #aaa8a3;
+      font-family: Arial, sans-serif;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    footer {
+      padding: 40px 20px;
+      text-align: center;
+      color: #77746f;
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+    }
+
+    @media (max-width: 850px) {
+      nav {
+        flex-wrap: wrap;
+        padding-top: 15px;
+        padding-bottom: 15px;
+      }
+
+      .links {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .contract {
+        max-width: 230px;
+      }
+
+      .hero-content {
+        padding: 50px 30px;
+      }
+
+      .stats {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <nav>
+      <a class="logo" href="#home">
+        DROP OR <span>BURN</span>
+      </a>
+
+      <div class="links">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#ledger">Ledger</a>
+        <a href="#roadmap">Roadmap</a>
+
+        <!-- CAMBIA EL ENLACE DE X -->
+        <a href="https://x.com/" target="_blank">X ↗</a>
+      </div>
+
+      <div class="contract">
+        <strong>CA</strong>
+
+        <!-- CAMBIA PEGA_AQUI_TU_CA POR TU CONTRATO -->
+        <span class="contract-address" id="ca">
+          PEGA_AQUI_TU_CA
+        </span>
+
+        <button class="copy" onclick="copyCA()">⧉</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+
+    <div class="hero" id="home">
+      <div class="hero-content">
+
+        <span class="corner top-left"></span>
+        <span class="corner top-right"></span>
+        <span class="corner bottom-left"></span>
+        <span class="corner bottom-right"></span>
+
+        <h1>DROP OR <span>BURN</span></h1>
+
+        <p>
+          Choose the token's destiny. Drop the rewards or burn the supply.
+        </p>
+
+        <div class="buttons">
+          <a class="button" href="#ledger">Drop</a>
+          <a class="button burn-button" href="#ledger">Burn</a>
+        </div>
+
+      </div>
+    </div>
+
+    <section id="about">
+      <div class="label">About the project</div>
+
+      <h2>What this is</h2>
+
+      <p>
+        Drop or Burn is a community-driven memecoin experiment designed
+        around transparency, participation and real-time creator rewards.
+      </p>
+
+      <p style="margin-top:20px;">
+        The community decides the token's destiny: distribute the rewards
+        to holders or permanently burn part of the supply.
+      </p>
+
+      <div class="important">
+        The goal is simple: let the community decide.
+      </div>
+    </section>
+
+    <section id="ledger">
+      <div class="label">Public ledger</div>
+
+      <h2>Transparent by design</h2>
+
+      <p>
+        Important transactions, rewards, burns and project updates
+        will be published here for the community.
+      </p>
+
+      <div class="stats">
+        <div class="stat">
+          <strong>100%</strong>
+          <span>Creator rewards</span>
+        </div>
+
+        <div class="stat">
+          <strong>LIVE</strong>
+          <span>Community decisions</span>
+        </div>
+
+        <div class="stat">
+          <strong>OPEN</strong>
+          <span>Public ledger</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="roadmap">
+      <div class="label">Roadmap</div>
+
+      <h2>The next steps</h2>
+
+      <p>
+        Launch the community, publish transparent records, expand the
+        Drop or Burn system and build new tools for holders.
+      </p>
+
+      <div class="buttons">
+        <a class="button" href="https://x.com/" target="_blank">
+          Follow on X
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    © <span id="year"></span> DROP OR BURN — Built for the community.
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+
+    function copyCA() {
+      const ca = document.getElementById("ca").textContent.trim();
+
+      navigator.clipboard.writeText(ca).then(() => {
+        alert("Contract copied");
+      });
+    }
+  </script>
+
+</body>
+</html>
