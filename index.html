@@ -113,16 +113,24 @@
     }
 
     .token-icon {
-      width: 95px;
-      height: 95px;
-      margin: auto;
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      font-size: 50px;
-      background: linear-gradient(135deg, #ffb000, #ff3100);
-      box-shadow: 0 0 30px #ff4d00;
-    }
+  width: 110px;
+  height: 110px;
+  margin: auto;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  box-shadow: 0 0 30px #ff4d00;
+}
+
+.token-logo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
 
     .token-name {
       margin-top: 20px;
@@ -243,14 +251,16 @@
 
     <section class="token-card">
 
-      <div class="token-icon" id="tokenIcon">🐶</div>
+      <div class="token-icon" id="tokenIcon">
+  <img src="logo.png" alt="Drop or Burn logo" class="token-logo">
+</div>
 
       <div class="token-name" id="tokenName">
-        COCO AI
+        Drop Or Burn
       </div>
 
       <div class="ticker" id="tokenTicker">
-        $COCO
+        $DOB
       </div>
 
       <div class="buttons">
