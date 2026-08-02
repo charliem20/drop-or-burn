@@ -295,8 +295,124 @@
         grid-template-columns: 1fr;
       }
     }
-  </style>
+  /* PARTE INFERIOR: EQUIPO Y NÚMERO */
+
+.bottom-star {
+  padding: 55px 0;
+  text-align: center;
+  font-size: 22px;
+  color: #eeeae2;
+}
+
+.team-section {
+  max-width: 950px;
+  padding-top: 70px;
+  padding-bottom: 70px;
+}
+
+.team-description {
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 18px;
+  margin-top: 38px;
+}
+
+.team-card {
+  min-height: 180px;
+  padding: 18px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.01);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.team-avatar {
+  width: 66px;
+  height: 66px;
+  margin-bottom: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #aaa7a0;
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.team-card h3 {
+  margin-bottom: 4px;
+  font-size: 18px;
+}
+
+.team-card p {
+  color: #928f89;
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+.team-social {
+  margin-top: 8px;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+}
+
+.number-section {
+  max-width: 900px;
+  padding-top: 65px;
+  padding-bottom: 110px;
+}
+
+.number-description {
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+.big-number {
+  margin-top: 55px;
+  color: #eeeae2;
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: clamp(38px, 6vw, 66px);
+  font-weight: bold;
+  letter-spacing: 2px;
+  white-space: nowrap;
+}
+
+.number-source {
+  max-width: 620px;
+  margin: 38px auto 0;
+  color: #77746f;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+@media (max-width: 900px) {
+  .team-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .big-number {
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+}
+
+@media (max-width: 520px) {
+  .team-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+</style>
 </head>
+
 
 <body>
 
@@ -382,55 +498,78 @@
 
 </section>
 
-<section id="ledger">
-      <div class="label">Public ledger</div>
+<div class="bottom-star">✦</div>
 
-      <h2>Transparent by design</h2>
+<section id="portfolio" class="team-section">
+  <h2>The Team</h2>
 
-      <p>
-        Important transactions, rewards, burns and project updates
-        will be published here for the community.
-      </p>
+  <p class="team-description">
+    Project Lucky is led by Lucky, the main agent, with Raj and Toly serving
+    as specialist agents across marketing and research.
+  </p>
 
-      <div class="stats">
-        <div class="stat">
-          <strong>100%</strong>
-          <span>Creator rewards</span>
-        </div>
+  <div class="team-grid">
 
-        <div class="stat">
-          <strong>LIVE</strong>
-          <span>Community decisions</span>
-        </div>
+    <div class="team-card">
+      <div class="team-avatar">0X</div>
+      <h3>0xD3bt</h3>
+      <p>Founder</p>
+      <div class="team-social">◉ &nbsp; 𝕏</div>
+    </div>
 
-        <div class="stat">
-          <strong>OPEN</strong>
-          <span>Public ledger</span>
-        </div>
-      </div>
-    </section>
+    <div class="team-card">
+      <div class="team-avatar">L</div>
+      <h3>Lucky</h3>
+      <p>Founder · Main Agent</p>
+      <div class="team-social">𝕏</div>
+    </div>
 
-    <section id="roadmap">
-      <div class="label">Roadmap</div>
+    <div class="team-card">
+      <div class="team-avatar">R</div>
+      <h3>Raj</h3>
+      <p>Social Media and<br>Marketing Agent</p>
+    </div>
 
-      <h2>The next steps</h2>
+    <div class="team-card">
+      <div class="team-avatar">T</div>
+      <h3>Toly</h3>
+      <p>Research Agent</p>
+    </div>
 
-      <p>
-        Launch the community, publish transparent records, expand the
-        Drop or Burn system and build new tools for holders.
-      </p>
+    <div class="team-card">
+      <div class="team-avatar">M</div>
+      <h3>Mert</h3>
+      <p>Waterboy</p>
+    </div>
 
-      <div class="buttons">
-        <a class="button" href="https://x.com/" target="_blank">
-          Follow on X
-        </a>
-      </div>
-    </section>
+  </div>
+</section>
 
+<div class="bottom-star">✦</div>
+
+<section id="ledger" class="number-section">
+  <h2>The number</h2>
+
+  <p class="number-description">
+    This is the total public debt of the United States, as reported by the U.S.
+    Treasury. It represents the full outstanding obligation of the federal
+    government. The figure updates every business day. I publish it here in plain
+    sight so it remains visible, current, and unavoidable.
+  </p>
+
+  <div class="big-number">
+    $39,841,133,542,023
+  </div>
+
+  <div class="number-source">
+    As of 2026-07-30. Source: U.S. Treasury / Project Lucky live ledger.
+    Updated every 24 hours.
+  </div>
+</section>
   </main>
 
   <footer>
-    © <span id="year"></span> DROP OR BURN — Built for the community.
+    © <span id="year"></span> PROJECT LUCKY — Built in public.
   </footer>
 
   <script>
